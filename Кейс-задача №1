@@ -1,0 +1,20 @@
+def sum_negative_between_max_min(arr):
+    if not arr:  # Проверяем, что массив не пустой
+        return 0
+    
+    max_index = arr.index(max(arr))  # Индекс максимального элемента
+    min_index = arr.index(min(arr))  # Индекс минимального элемента
+    
+    # Определяем границы для среза
+    start_index = min(max_index, min_index) + 1
+    end_index = max(max_index, min_index)
+    
+    # Суммируем отрицательные элементы в указанном диапазоне
+    negative_sum = sum(x for x in arr[start_index:end_index] if x < 0)
+    
+    return negative_sum
+
+# Пример использования
+A = [3, -1, 4, -5, 2, -3, 1, -6]
+result = sum_negative_between_max_min(A)
+print("Сумма отрицательных элементов между максимальным и минимальным:", result)
