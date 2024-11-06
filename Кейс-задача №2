@@ -1,0 +1,29 @@
+# Определение базового класса
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return f"{self.name} издает звук."
+
+# Определение производного класса
+class Dog(Animal):
+    def speak(self):
+        return f"{self.name} говорит: Гав!"
+
+    def fetch(self, item):
+        return f"{self.name} приносит {item}."
+
+# Тестовая программа
+def main():
+    # Создаем объект базового класса
+    animal = Animal("Животное")
+    print(animal.speak())  # Вызов метода базового класса
+
+    # Создаем объект производного класса
+    dog = Dog("Бобик")
+    print(dog.speak())  # Вызов переопределенного метода производного класса
+    print(dog.fetch("мяч"))  # Вызов метода, уникального для производного класса
+
+if __name__ == "__main__":
+    main()
