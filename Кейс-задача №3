@@ -1,1 +1,48 @@
+-- Создание таблицы стран
+CREATE TABLE Countries (
+    CountryID INT PRIMARY KEY AUTO_INCREMENT,
+    CountryName VARCHAR(100) NOT NULL
+);
+
+-- Создание таблицы типов туров
+CREATE TABLE TourTypes (
+    TourTypeID INT PRIMARY KEY AUTO_INCREMENT,
+    TourTypeName VARCHAR(100) NOT NULL
+);
+
+-- Создание таблицы услуг
+CREATE TABLE Services (
+    ServiceID INT PRIMARY KEY AUTO_INCREMENT,
+    ServiceName VARCHAR(100) NOT NULL,
+    ServiceDescription TEXT
+);
+
+-- Создание таблицы клиентов
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100),
+    Phone VARCHAR(15)
+);
+
+-- Создание таблицы заказов
+CREATE TABLE Bookings (
+    BookingID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT,
+    CountryID INT,
+    TourTypeID INT,
+    BookingDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    ServiceID INT,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (CountryID) REFERENCES Countries(CountryID),
+    FOREIGN KEY (TourTypeID) REFERENCES TourTypes(TourTypeID),
+    FOREIGN KEY (ServiceID) REFERENCES Services(ServiceID)
+);
+
+-- Индексы для повышения производительности
+CREATE INDEX idx_customer ON Bookings(CustomerID);
+CREATE INDEX idx_country ON Bookings(CountryID);
+CREATE INDEX idx_tour_type ON Bookings(TourTypeID);
+CREATE INDEX idx_service ON Bookings(ServiceID);
 
